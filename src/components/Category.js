@@ -4,17 +4,20 @@ function Category({ category, checkbox, setCheckbox }) {
   return (
     <>
       <div
-        className={`flex justify-center items-center flex-col bg-white p-4  w-1/2 shadow-${category.toLowerCase()}`}
+        className={`flex justify-center items-center flex-col bg-white p-4  w-1/2 shadow`}
+        onClick={() => setCheckbox(category)}
       >
         <input
           type="radio"
-          class={`${category.toLowerCase()}`}
+          className={` ${category.toLowerCase()}`}
           name={"category"}
           value={category}
           onChange={(event) => setCheckbox(event.target.value)}
           checked={checkbox === category}
+          id={category}
         />
-        <h4>{category}</h4>
+        <span className={`buble ${category.toLowerCase()}`}></span>
+        <label htmlFor={category}>{category}</label>
       </div>
     </>
   );

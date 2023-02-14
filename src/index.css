@@ -1,11 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-    .business {
-      background-color: rgba(58, 130, 238, 0.75)
+    input[type="radio"], input[type="checkbox"] {
+      display: none;
     }
-    .personal {
-      background-color: rgba(73, 234, 64, 0.75)
+    .buble {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid rgba(58, 130, 238, 0.75);
+      box-shadow: 0 0 4px rgba(58, 130, 238, 0.75);
+    }
+    .buble.personal {
+      border-color:rgba(73, 234, 64, 0.75);
+      box-shadow: 0 0 4px rgba(73, 234, 64, 0.75);
+    }
+    .buble::after {
+      content : "";
+      display : block;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      background-color: rgba(58, 130, 238, 0.75);
+      box-shadow: 0 0 4px rgba(58, 130, 238, 0.75);
+      border-radius: 50%;
+      transition: 0.2s ease-in-out;
+
+    }
+    .buble.personal::after {
+      background-color: rgba(73, 234, 64, 0.75);
+      box-shadow: 0 0 4px rgba(73, 234, 64, 0.75);
+    }
+    input:checked ~ .buble::after {
+      width: 10px;
+      height: 10px;
+      opacity: 1;
+    }
+   input:checked ~ label .buble::after {
+      width: 10px;
+      height: 10px;
+      opacity: 1;
     }

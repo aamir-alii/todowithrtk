@@ -3,12 +3,20 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { deleteTodo, updateStatus } from "../store/todoSlice";
+
 function Todo({ data, completed, category, id, handleEdit, todo }) {
   const dispatch = useDispatch();
   return (
     <div className="flex gap-2 bg-white px-3 py-2 items-center justify-between">
       <div className="flex gap-2">
-        <input type="checkbox" onClick={() => dispatch(updateStatus(id))} />
+        <input
+          id={id}
+          type="checkbox"
+          onClick={() => dispatch(updateStatus(id))}
+        />
+        <label htmlFor={id}>
+          <span className={`buble ${category.toLowerCase()}`}></span>
+        </label>
         <p className={`${completed === true ? "text-light" : ""} `}>{data}</p>
       </div>
       <div className="flex gap-2">
