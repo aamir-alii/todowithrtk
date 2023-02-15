@@ -32,9 +32,16 @@ const todoSlice = createSlice({
         return true;
       });
     },
+    saveAll(state, action) {
+      let todo = action.payload.values();
+      for (let x in action.payload) {
+        state.todos.push(action.payload[x]);
+      }
+      return state;
+    },
   },
 });
 
-export const { addTodo, deleteTodo, updateStatus, editTodo } =
+export const { addTodo, deleteTodo, updateStatus, editTodo, saveAll } =
   todoSlice.actions;
 export default todoSlice.reducer;

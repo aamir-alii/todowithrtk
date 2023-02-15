@@ -39,11 +39,3 @@ function Todo({ data, completed, category, id, handleEdit, todo }) {
 }
 
 export default Todo;
-
-/*
-1) copyrights / copyright
-2) title / title
-3) Description / explanation
-
-
-*/

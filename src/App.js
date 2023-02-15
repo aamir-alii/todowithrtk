@@ -1,11 +1,12 @@
 import Category from "./components/Category";
 import Todo from "./components/Todo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, editTodo } from "./store/todoSlice";
+import { addTodo, editTodo, saveAll } from "./store/todoSlice";
 const App = () => {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
+  if (todos.length) localStorage.setItem("todos", JSON.stringify(todos));
   const [input, setInput] = useState("");
   const [checkbox, setCheckbox] = useState("");
   const [update, setUpdate] = useState({
@@ -43,9 +44,14 @@ const App = () => {
       setCheckbox("");
     }
   };
+  useEffect(() => {
+    console.log("Effect Called");
+    let localTodos = JSON.parse(localStorage.getItem("todos"));
+    dispatch(saveAll(localTodos));
+  }, []);
   return (
     <div className="bg-white h-[100vh] flex items-center justify-center">
-      <div className="md:w-[30%] sm:w-[100%] bg-light h-[80vh] py-3 px-5 rounded">
+      <div className="md:w-[40%] sm:w-[100%] bg-light h-[80vh] py-3 px-5 rounded">
         <h3 className="font-bold text-lg mb-2">Hello</h3>
         <h4>CREATE A TODO</h4>
         <p>What's on your schedule?</p>
