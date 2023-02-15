@@ -3,10 +3,12 @@ import Todo from "./components/Todo";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, editTodo, saveAll } from "./store/todoSlice";
+let flag = false;
 const App = () => {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
-  if (todos.length) localStorage.setItem("todos", JSON.stringify(todos));
+  if (todos.length || flag)
+    localStorage.setItem("todos", JSON.stringify(todos));
   const [input, setInput] = useState("");
   const [checkbox, setCheckbox] = useState("");
   const [update, setUpdate] = useState({
@@ -47,7 +49,8 @@ const App = () => {
   useEffect(() => {
     console.log("Effect Called");
     let localTodos = JSON.parse(localStorage.getItem("todos"));
-    dispatch(saveAll(localTodos));
+    if (localTodos) dispatch(saveAll(localTodos));
+    flag = true;
   }, []);
   return (
     <div className="bg-white h-[100vh] flex items-center justify-center">
