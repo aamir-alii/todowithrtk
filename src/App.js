@@ -86,7 +86,7 @@ const App = () => {
           {update.state ? "Update Todo" : "Add Todo"}
         </button>
         <p>Todo List</p>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 overflow-scroll h-[50%]">
           {todos.map((todo) => (
             <Todo
               todo={todo}
